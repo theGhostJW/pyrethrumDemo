@@ -1,4 +1,4 @@
-name:                pyrethrum
+name:                pyrethrumDemo
 version:             0.1.0.0
 github:              "githubuser/simple-hpack"
 license:             BSD3
@@ -33,6 +33,7 @@ dependencies:
   - raw-strings-qq
   - polysemy
   - polysemy-plugin
+  - pyrethrum
 
 ghc-options:
   - -fmax-pmcheck-iterations=10000000
@@ -137,10 +138,9 @@ tests:
 
     dependencies: *testdependencies
   
-  pyrethrum-test-Integration:
+  demo:
     main:                driver.hs
     source-dirs:         
-    - testIntegration
     - testDemoProject
     dependencies: 
       *testdependencies

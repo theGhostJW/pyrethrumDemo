@@ -54,6 +54,8 @@ extra-deps:
 # mine
 - git: https://github.com/theGhostJW/pyrelude
   commit: "4077213a476d31f9127eebc8126130024ddfdedf"
+- git: https://github.com/theGhostJW/pyrethrum
+  commit: "d485fef0e1f6c00494e49cb3cc0801f361fc373a"
 - discrimination-0.4@sha256:d42ae36c97ea9c0c8844b47ee162c5530f3daf708636f01010f58dcf52602876,2571
 - encode-string-0.1.0.0@sha256:b960508cede9547f5af3ade3d07ed79cbdb575ed128fcac1d7cff0a1162260ce,1864
 - polysemy-plugin-0.2.5.0@sha256:67e30be568a141b852aace1a60e180cb5060fbb2835365a81a3ea779536d6d35,2952

@@ -16,6 +16,17 @@ packages:
     git: https://github.com/theGhostJW/pyrelude
     commit: 4077213a476d31f9127eebc8126130024ddfdedf
 - completed:
+    name: pyrethrum
+    version: 0.1.0.0
+    git: https://github.com/theGhostJW/pyrethrum
+    pantry-tree:
+      size: 4750
+      sha256: 5e8a2b17fcdb0388c5b8d04d88c99ad6ac4641e83ed1f4edf3e8691abca6f8f4
+    commit: d485fef0e1f6c00494e49cb3cc0801f361fc373a
+  original:
+    git: https://github.com/theGhostJW/pyrethrum
+    commit: d485fef0e1f6c00494e49cb3cc0801f361fc373a
+- completed:
     hackage: discrimination-0.4@sha256:d42ae36c97ea9c0c8844b47ee162c5530f3daf708636f01010f58dcf52602876,2571
     pantry-tree:
       size: 923

@@ -5,7 +5,7 @@ module AuxFiles where
 import Pyrelude as F
 import Pyrelude.IO
 import qualified Prelude as P
-import Paths_pyrethrum
+import Paths_pyrethrumDemo
 import qualified System.IO as S
 import qualified Data.Char as C
 import Control.Monad.IO.Class
