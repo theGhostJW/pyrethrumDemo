@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d2669023c103dfa797976cd319011316ffa7b8954665ee1f8860948e716c9bbe
+-- hash: 720746bf600fa7a05074eb650da0c1f7df7dfce37f74e5fd48af3a3b5dbaa72f
 
 name:           pyrethrumDemo
 version:        0.1.0.0
@@ -27,32 +27,15 @@ source-repository head
 
 library
   exposed-modules:
-      AuxFiles
-      Check
-      Common
-      DSL.ArbitraryIO
-      DSL.CurrentTime
-      DSL.CurrentTimeDocLogger
-      DSL.Ensure
-      DSL.FileSystem
-      DSL.Interpreter
-      DSL.Logger
-      DSL.LogProtocol
-      DSL.LogProtocol.PrettyPrint
-      ItemFilter
-      LogTransformation
-      LogTransformation.Common
-      LogTransformation.PrintLogDisplayElement
-      LogTransformation.Stats
-      LogTransformation.Test
-      MemberReflection
-      OrphanedInstances
-      PrettyPrintCommon
-      RunElementClasses
-      Runner
-      RunnerBase
-      RunnerConsoleAndFile
-      TestFilter
+      Config
+      Rough
+      Rough2
+      RoughDisabled
+      RoughIntState
+      Simple
+      Simple2
+      TestCaseList
+      TestFilePaths
   other-modules:
       Paths_pyrethrumDemo
   hs-source-dirs:
@@ -68,6 +51,7 @@ library
     , dlist
     , extra
     , fmt
+    , hedgehog
     , mtl
     , polysemy
     , polysemy-plugin
@@ -75,105 +59,13 @@ library
     , pyrelude
     , pyrethrum
     , raw-strings-qq
+    , tasty
+    , tasty-discover
+    , tasty-hedgehog
+    , tasty-hunit
     , template-haskell
     , text
     , transformers-either
     , unordered-containers
-    , yaml
-  default-language: Haskell2010
-
-test-suite demo
-  type: exitcode-stdio-1.0
-  main-is: driver.hs
-  other-modules:
-      DemoProject.Config
-      DemoProject.Test.Rough
-      DemoProject.Test.Rough2
-      DemoProject.Test.RoughDisabled
-      DemoProject.Test.RoughIntState
-      DemoProject.Test.Simple
-      DemoProject.Test.Simple2
-      DemoProject.Test.TestFilePaths
-      DemoProject.TestCaseList
-      Paths_pyrethrumDemo
-  hs-source-dirs:
-      testDemoProject
-  default-extensions: AllowAmbiguousTypes BangPatterns BlockArguments ConstrainedClassMethods ConstraintKinds DisambiguateRecordFields DuplicateRecordFields DataKinds DefaultSignatures DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies EmptyCase ExistentialQuantification ExtendedDefaultRules FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase LiberalTypeSynonyms MultiParamTypeClasses MultiWayIf NamedFieldPuns NoImplicitPrelude OverloadedStrings PartialTypeSignatures PatternSynonyms PolyKinds QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving StrictData TemplateHaskell TupleSections TypeApplications TypeFamilies TypeFamilyDependencies TypeOperators
-  ghc-options: -fmax-pmcheck-iterations=10000000 -ferror-spans -O0 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -fplugin=Polysemy.Plugin -fwarn-tabs -fno-warn-unused-imports -fno-warn-missing-signatures -fno-warn-type-defaults -fno-warn-unused-matches -fno-warn-unused-binds -fno-warn-unused-do-bind
-  build-depends:
-      aeson
-    , base
-    , bytestring
-    , containers
-    , dlist
-    , extra
-    , hedgehog
-    , mtl
-    , polysemy
-    , polysemy-plugin
-    , pretty-show
-    , pyrelude
-    , pyrethrum
-    , raw-strings-qq
-    , tasty
-    , tasty-discover
-    , tasty-hedgehog
-    , tasty-hunit
-    , text
-    , transformers-either
-    , yaml
-  default-language: Haskell2010
-
-test-suite pyrethrum-test
-  type: exitcode-stdio-1.0
-  main-is: driver.hs
-  other-modules:
-      ArbitraryIOTest
-      AuxFilesTest
-      CheckTest
-      EndpointTest
-      ItemFiltersTest
-      LogListCheck
-      LogProtocolTest
-      LogTransformationTest
-      PrettyPrintTest
-      RunnerTest
-      TestFilterTest
-      DemoProject.Config
-      DemoProject.Test.Rough
-      DemoProject.Test.Rough2
-      DemoProject.Test.RoughDisabled
-      DemoProject.Test.RoughIntState
-      DemoProject.Test.Simple
-      DemoProject.Test.Simple2
-      DemoProject.Test.TestFilePaths
-      DemoProject.TestCaseList
-      Paths_pyrethrumDemo
-  hs-source-dirs:
-      test
-      testDemoProject
-  default-extensions: AllowAmbiguousTypes BangPatterns BlockArguments ConstrainedClassMethods ConstraintKinds DisambiguateRecordFields DuplicateRecordFields DataKinds DefaultSignatures DeriveFoldable DeriveFunctor DeriveGeneric DeriveLift DeriveTraversable DerivingStrategies EmptyCase ExistentialQuantification ExtendedDefaultRules FlexibleContexts FlexibleInstances FunctionalDependencies GADTs GeneralizedNewtypeDeriving InstanceSigs KindSignatures LambdaCase LiberalTypeSynonyms MultiParamTypeClasses MultiWayIf NamedFieldPuns NoImplicitPrelude OverloadedStrings PartialTypeSignatures PatternSynonyms PolyKinds QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables StandaloneDeriving StrictData TemplateHaskell TupleSections TypeApplications TypeFamilies TypeFamilyDependencies TypeOperators
-  ghc-options: -fmax-pmcheck-iterations=10000000 -ferror-spans -O0 -Wall -Wcompat -Wincomplete-record-updates -Wincomplete-uni-patterns -Wredundant-constraints -fplugin=Polysemy.Plugin -fwarn-tabs -fno-warn-unused-imports -fno-warn-missing-signatures -fno-warn-type-defaults -fno-warn-unused-matches -fno-warn-unused-binds -fno-warn-unused-do-bind
-  build-depends:
-      aeson
-    , base
-    , bytestring
-    , containers
-    , dlist
-    , extra
-    , hedgehog
-    , mtl
-    , polysemy
-    , polysemy-plugin
-    , pretty-show
-    , pyrelude
-    , pyrethrum
-    , raw-strings-qq
-    , tasty
-    , tasty-discover
-    , tasty-hedgehog
-    , tasty-hunit
-    , text
-    , transformers-either
     , yaml
   default-language: Haskell2010

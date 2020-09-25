@@ -3,10 +3,10 @@
 -- https://github.com/haskell/haskell-ide-engine/issues/842
 {-# LANGUAGE QuasiQuotes #-}
 
-module DemoProject.Test.Simple where
+module Simple where
 
 import           Check
-import  DemoProject.Config as C
+import  Config as C
 import DSL.Ensure
 import Runner as R
 import           Polysemy
@@ -15,7 +15,7 @@ import           Pyrelude
 import qualified Prelude as P
 import Data.Aeson.TH
 import OrphanedInstances()
-import DemoProject.Test.TestFilePaths
+import TestFilePaths
 
 type Effects effs = EnsureLogEffs effs
 
@@ -84,12 +84,10 @@ ep rc iFltr = testEndpoint nameOfModule rc (filterredItemIds iFltr $ items runCo
 
 test :: forall effs. Effects effs => Test Item ApState DState effs
 test = GenericTest {
-              configuration = config {address = nameOfModule},
-              components = TestComponents {
-                                testItems = items,
-                                testInteractor = interactor,
-                                testPrepState = prepState
-                            }
+              config = Simple.config {address = nameOfModule},
+              testItems = items,
+              testInteractor = interactor,
+              testPrepState = prepState
             }
 
 instance ItemClass Item DState where

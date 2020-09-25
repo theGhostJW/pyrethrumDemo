@@ -1,12 +1,12 @@
 
 {-# OPTIONS_GHC -fno-warn-redundant-constraints #-}
--- https://github.com/haskell/haskell-ide-engine/issues/842
+-- should not need this: https://github.com/haskell/haskell-ide-engine/issues/842
 {-# LANGUAGE QuasiQuotes #-}
 
-module DemoProject.Test.Simple2 where
-  
-import DemoProject.Test.Simple as T
-import DemoProject.Config
+module Rough2 where
+
+import Rough as T
+import Config
 import DSL.Interpreter
 import           Polysemy
 import           Pyrelude
@@ -17,5 +17,5 @@ endpoint = ep runConfig (IID 120)
 
 data Dummy = Dummy
 
-test :: forall effs. Effects effs => Test Item ApState DState effs
-test = T.test { configuration = config {address = mkTestModule ''Dummy} }
+test :: forall effs. T.Effects effs => Test Item ApState DState effs
+test = T.test { R.config = T.config {address = mkTestModule ''Dummy} }

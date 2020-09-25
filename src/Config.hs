@@ -1,4 +1,4 @@
-module DemoProject.Config where
+module Config where
 
 import           Data.Set                   as S
 import           DSL.Interpreter

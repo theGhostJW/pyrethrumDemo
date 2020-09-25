@@ -19,22 +19,6 @@ extra-source-files:
 # common to point users to the README.md file.
 description:         Please see the README on GitHub at <https://github.com/githubuser/simple-hpack#readme>
 
-dependencies:
-  - base
-  - pyrelude
-  - containers
-  - extra
-  - text
-  - transformers-either
-  - aeson
-  - yaml
-  - pretty-show
-  - dlist
-  - raw-strings-qq
-  - polysemy
-  - polysemy-plugin
-  - pyrethrum
-
 ghc-options:
   - -fmax-pmcheck-iterations=10000000
   - -ferror-spans
@@ -110,38 +94,31 @@ default-extensions:
   - TypeOperators
 
 library:
+  main: driver.hs
   source-dirs: src
   dependencies:
+    - base
+    - tasty
+    - tasty-hunit
+    - tasty-hedgehog
+    - tasty-discover
+    - hedgehog
+    - pyrethrum
+    - bytestring
+    - mtl
+    - pyrelude
+    - containers
+    - extra
+    - text
+    - transformers-either
+    - aeson
+    - yaml
+    - pretty-show
+    - dlist
+    - raw-strings-qq
+    - polysemy
+    - polysemy-plugin
     - deepseq
     - unordered-containers
     - template-haskell
-    - bytestring
-    - mtl
     - fmt
-
-_testDep: &testdependencies
-- tasty
-- tasty-hunit
-- tasty-hedgehog
-- tasty-discover
-- hedgehog
-- pyrethrum
-- bytestring
-- mtl
-
-tests:
-  pyrethrum-test:
-    main:                driver.hs
-    source-dirs:        
-    - test
-    - testDemoProject
-
-    dependencies: *testdependencies
-  
-  demo:
-    main:                driver.hs
-    source-dirs:         
-    - testDemoProject
-    dependencies: 
-      *testdependencies
-    

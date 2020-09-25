@@ -2,18 +2,18 @@
 {-# LANGUAGE NoPolyKinds #-} 
 -- TODO: work out why this is needed - investigate polykinds
 
-module DemoProject.TestCaseList where
+module TestCaseList where
 
 import           Polysemy
 import           Polysemy.State
 import           Polysemy.Reader
-import           DemoProject.Config as C
-import           DemoProject.Test.Rough as RT
-import           DemoProject.Test.Rough2 as RT2
-import           DemoProject.Test.Simple as ST
-import  DemoProject.Test.RoughIntState
-import  DemoProject.Test.RoughDisabled as DT
-import  DemoProject.Test.Simple2 as ST2
+import           Config as C
+import           Rough as RT
+import           Rough2 as RT2
+import           Simple as ST
+import  RoughIntState
+import  RoughDisabled as DT
+import  Simple2 as ST2
 import  Control.Monad
 import  Data.Functor (($>))
 import           Common
@@ -45,7 +45,7 @@ validPlan :: forall m m1 effs a. EFFAllEffects effs =>
 validPlan ro0 gh0 ro1 gh1 f =
   [
 
-    TestGroup {
+    Tests {
            header = "Group 1",
            rollover = ro0,
            goHome = gh0,
@@ -53,11 +53,11 @@ validPlan ro0 gh0 ro1 gh1 f =
                f RT.test,
                f DT.test,
                f ST.test,
-               f DemoProject.Test.RoughIntState.test
+               f RoughIntState.test
              ]
       },
 
-    TestGroup {
+    Tests {
           header = "Group 2",
           rollover = ro1,
           goHome = gh1,

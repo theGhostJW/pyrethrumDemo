@@ -1,6 +1,6 @@
 {-# LANGUAGE CPP #-}
 
-module DemoProject.Test.TestFilePaths where
+module TestFilePaths where
 
 import  Pyrelude
 

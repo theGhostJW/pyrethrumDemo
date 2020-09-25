@@ -4,17 +4,17 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE CPP #-}
 
-module DemoProject.Test.Rough where
+module Rough where
 
 import           DSL.Logger
 import           Check
-import           DemoProject.Config as C
+import           Config as C
 import           Polysemy
 import           Control.Monad
+import           DSL.ArbitraryIO
 import           DSL.Ensure
 import           DSL.FileSystem
 import           DSL.Interpreter
-import           DSL.ArbitraryIO
 import           DSL.CurrentTime as CT
 import qualified Prelude as P
 import qualified Pyrelude.IO as PIO
@@ -22,7 +22,7 @@ import           Pyrelude
 import Runner as R 
 import Data.Aeson.TH
 import OrphanedInstances()
-import DemoProject.Test.TestFilePaths
+import TestFilePaths
 import GHC.Stack
 
 type Effects effs = Members '[SuiteLogger, Ensure, ArbitraryIO, CurrentTime, FileSystem] effs
@@ -153,12 +153,10 @@ ep rc iFltr = testEndpoint nameOfModule rc (filterredItemIds iFltr $ items runCo
 
 test :: forall effs. Effects effs => Test Item ApState DState effs
 test = GenericTest {
-              configuration = config {address = nameOfModule},
-              components = TestComponents {
-                                testItems = items,
-                                testInteractor = interactor,
-                                testPrepState = prepState
-                            }
+              config = Rough.config {address = nameOfModule},
+              testItems = items,
+              testInteractor = interactor,
+              testPrepState = prepState
             }
 
 instance ItemClass Item DState where
