@@ -15,6 +15,13 @@ import Polysemy.Error as PE
 import DSL.Ensure
 import DSL.Logger
 import DSL.LogProtocol
+import Paths_pyrethrumDemo
+
+exeDir :: IO AbsDir
+exeDir = debug . parent <$> (parseAbsFile =<< getBinDir)
+
+showAndLogItems :: Show a => [a] -> IO ()
+showAndLogItems = showAndLogItemsBase exeDir
 
 type EnsureLogEffs effs = EFFEnsureLog SuiteError effs
 type EnsureEffs effs = Ensurable SuiteError effs

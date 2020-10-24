@@ -115,7 +115,7 @@ runToLPList = executeForTest runSem
 
 runLogToFile :: WantConsole -> IO ()
 runLogToFile wc = 
-    ioRunToFile wc False executeWithLogger runSem >>= consoleRunResults
+    ioRunToFile exeDir wc False executeWithLogger runSem >>= consoleRunResults
 
 runToFile :: IO ()
 runToFile = runLogToFile NoConsole
@@ -125,7 +125,7 @@ runToFileAndConsole = runLogToFile Console
 
 docLogToFile :: WantConsole -> IO ()
 docLogToFile wc = 
-    ioRunToFile wc True documentWithLogger listingSem >>= consoleRunResults
+    ioRunToFile exeDir wc True documentWithLogger listingSem >>= consoleRunResults
     
 docToFile :: IO ()
 docToFile = docLogToFile NoConsole
@@ -158,7 +158,7 @@ alwaysFailCheck = PreRun {
 -- broken plans for testing
 
 runIO :: (forall m m1 effs a. EFFAllEffects effs => TestPlan m1 m a effs) -> IO ()
-runIO plan' = ioRunToFile Console False executeWithLogger 
+runIO plan' = ioRunToFile exeDir Console False executeWithLogger 
                     (mkRunSem RunParams {
                         plan = plan',
                         filters = filterList,
